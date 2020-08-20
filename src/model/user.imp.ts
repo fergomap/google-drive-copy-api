@@ -4,6 +4,9 @@ import { JsonObject, JsonProperty } from 'json2typescript';
 @JsonObject('UserImp')
 export default class UserImp implements User {
 
+    @JsonProperty('id', String, true)
+    id: string;
+
     @JsonProperty('name', String, true)
     name: string;
 
@@ -13,17 +16,18 @@ export default class UserImp implements User {
     @JsonProperty('avatar', String, true)
     avatar: string;
 
-    @JsonProperty('token', String, true)
-    token: string;
-
     @JsonProperty('password', String, true)
     password: string;
 
-    constructor(name: string = '', email: string = '', avatar: string = '', token: string = '', password: string = '') {
+    @JsonProperty('rootFolderId', String, true)
+    rootFolderId: string;
+
+    constructor(id: string = '', name: string = '', email: string = '', avatar: string = '', password: string = '', rootFolderId: string = '') {
+        this.id = id;
         this.name = name;
         this.email = email;
         this.avatar = avatar;
-        this.token = token;
         this.password = password;
+        this.rootFolderId = rootFolderId;
     }
 }

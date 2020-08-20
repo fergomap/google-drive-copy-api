@@ -7,6 +7,12 @@ interface AppConfig {
         SIGN_UP: string;
         USER_INFO: string;
         DOCUMENTS: string;
+        DOCUMENT_INFO: string;
+        DOCUMENTS_TRASH: string;
+        DOCUMENTS_TRASH_INFO: string;
+        FOLDERS: string;
+        FOLDER_INFO: string;
+        MOVE_FOLDER: string;
     }
 }
 
@@ -18,6 +24,12 @@ export const APP_CONSTANTS: AppConfig = {
         LOG_IN: '/log-in',
         SIGN_UP: '/sign-up',
         USER_INFO: '/user-info',
-        DOCUMENTS: '/documents'
+        DOCUMENTS: '/documents',
+        DOCUMENT_INFO: '/documents/:id',
+        DOCUMENTS_TRASH: '/trash',
+        DOCUMENTS_TRASH_INFO: '/trash/:id',
+        FOLDERS: '/folders',
+        FOLDER_INFO: '/folders/:id',
+        MOVE_FOLDER: '/move-folder'
     }
 };
