@@ -1,5 +1,6 @@
 import Document from "./document";
 import User from "./user";
+import { Moment } from "moment";
 
 export default interface Folder {
     id: string;
@@ -9,4 +10,6 @@ export default interface Folder {
     documentIds: string[];
     documents: Document[];
     folders: Folder[];
+    createdAt: Moment;
+    updatedAt: Moment;
 }

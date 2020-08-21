@@ -4,6 +4,8 @@ import User from "./user";
 import UserImp from "./user.imp";
 import { JsonObject, JsonProperty } from "json2typescript";
 import DocumentImp from "./document.imp";
+import moment, { Moment } from "moment";
+import { MomentDeserializer } from "./deserializers/moment.deserializer";
 
 @JsonObject('FolderImp')
 export default class FolderImp implements Folder {
@@ -29,8 +31,14 @@ export default class FolderImp implements Folder {
     @JsonProperty('folders', [FolderImp], true)
     folders: Folder[];
 
+    @JsonProperty('createdAt', MomentDeserializer, true)
+    createdAt: Moment;
+
+    @JsonProperty('updatedAt', MomentDeserializer, true)
+    updatedAt: Moment;
+
     constructor(id: string = '', name: string = '', creator: User = new UserImp(), parentFolderId?: string, documentIds: string[] = [], 
-                documents: Document[] = [], folders: Folder[] = []) {
+                documents: Document[] = [], folders: Folder[] = [], createdAt: Moment = moment(), updatedAt: Moment = moment()) {
         this.id = id;
         this.name = name;
         this.creator = creator;
@@ -38,5 +46,7 @@ export default class FolderImp implements Folder {
         this.documentIds = documentIds;
         this.documents = documents;
         this.folders = folders;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 }

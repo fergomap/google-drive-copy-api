@@ -40,7 +40,7 @@ export const authController = (app: Express, protectedRoutes: Router): void => {
 
         if (user) {
             if (user.password === req.body.password) {
-                const payload = { check: true };
+                const payload = { check: true, email: req.body.email };
                 const token = jwt.sign(
                     payload,
                     app.get(APP_CONSTANTS.API_KEY_FIELD),

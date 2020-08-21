@@ -4,6 +4,7 @@ import { JsonConvert } from 'json2typescript';
 import { folders, increaseFolderId, documents } from '../data/data';
 import FolderImp from '../model/folder.imp';
 import DocumentImp from '../model/document.imp';
+import moment from 'moment';
 
 const jsonConvert: JsonConvert = new JsonConvert();
 
@@ -23,6 +24,7 @@ export const foldersController = (app: Express, protectedRoutes: Router): void =
         const folder = folders.find(f => f.id === req.params.id);
 
         if (folder) {
+            folder.updatedAt = moment();
             folder.name = updatedFolder.name;
             folder.documents = folder.documentIds.map(docId => documents.find(doc => doc.id === docId) || new DocumentImp()).filter(d => !!d.id && !d.trash);
             res.json({ folder: jsonConvert.serialize(folder) });
