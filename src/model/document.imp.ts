@@ -18,8 +18,8 @@ export default class DocumentImp implements Document {
     @JsonProperty('type', String, true)
     type: FileTypeEnum;
 
-    @JsonProperty('file', Any, true)
-    file: Buffer;
+    @JsonProperty('file', String, true)
+    file: string;
 
     @JsonProperty('createdAt', MomentDeserializer, true)
     createdAt: Moment;
@@ -39,12 +39,8 @@ export default class DocumentImp implements Document {
     @JsonProperty('trash', Boolean, true)
     trash: boolean;
 
-    @JsonProperty('parentFolderId', String, true)
-    parentFolderId: string;
-
-    constructor(id: string = '', name: string = '', type: FileTypeEnum = FileTypeEnum.TEXT, file: Buffer = new Buffer(''), createdAt: Moment = moment(),
-                updatedAt: Moment = moment(), creator: User = new UserImp(), editors: User[] = [], viewers: User[] = [], trash: boolean = false,
-                parentFolderId: string = '') {
+    constructor(id: string = '', name: string = '', type: FileTypeEnum = FileTypeEnum.TEXT, file: string = '', createdAt: Moment = moment(),
+                updatedAt: Moment = moment(), creator: User = new UserImp(), editors: User[] = [], viewers: User[] = [], trash: boolean = false) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -55,6 +51,5 @@ export default class DocumentImp implements Document {
         this.editors = editors;
         this.viewers = viewers;
         this.trash = trash;
-        this.parentFolderId = parentFolderId;
     }
 }

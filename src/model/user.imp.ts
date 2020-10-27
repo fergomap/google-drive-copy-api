@@ -1,5 +1,7 @@
 import User from './user';
 import { JsonObject, JsonProperty } from 'json2typescript';
+import Folder from './folder';
+import EmptyFolderImp from './empty-folder.imp';
 
 @JsonObject('UserImp')
 export default class UserImp implements User {
@@ -16,18 +18,15 @@ export default class UserImp implements User {
     @JsonProperty('avatar', String, true)
     avatar: string;
 
-    @JsonProperty('password', String, true)
     password: string;
+    rootFolder: Folder;
 
-    @JsonProperty('rootFolderId', String, true)
-    rootFolderId: string;
-
-    constructor(id: string = '', name: string = '', email: string = '', avatar: string = '', password: string = '', rootFolderId: string = '') {
+    constructor(id: string = '', name: string = '', email: string = '', avatar: string = '', password: string = '', rootFolder: Folder = new EmptyFolderImp()) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.avatar = avatar;
         this.password = password;
-        this.rootFolderId = rootFolderId;
+        this.rootFolder = rootFolder;
     }
 }

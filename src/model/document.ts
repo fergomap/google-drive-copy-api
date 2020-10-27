@@ -6,12 +6,11 @@ export default interface Document {
     id: string;
     name: string;
     type: FileTypeEnum;
-    file: Buffer;
+    file: string;
     createdAt: Moment;
     updatedAt: Moment;
     creator: User;
     editors: User[];
     viewers: User[];
     trash: boolean;
-    parentFolderId: string;
 }

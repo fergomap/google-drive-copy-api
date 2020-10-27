@@ -3,7 +3,7 @@ import { JsonConvert } from 'json2typescript';
 import UserImp from '../model/user.imp';
 import { APP_CONSTANTS } from '../config/app.config';
 import jwt from 'jsonwebtoken';
-import { users, increaseUserId, increaseFolderId, folders } from '../data/data';
+import { users, increaseUserId, increaseFolderId } from '../data/data';
 import FolderImp from '../model/folder.imp';
 
 const jsonConvert: JsonConvert = new JsonConvert();
@@ -15,14 +15,10 @@ export const authController = (app: Express, protectedRoutes: Router): void => {
         if (user) {
             res.status(400).json({ error: 'user_already_registered' });
         } else {
-            const newUser = jsonConvert.deserializeObject(req.body, UserImp);
-            newUser.id = increaseUserId();
+            const newUser = new UserImp(increaseUserId(), req.body.name, req.body.email, req.body.avatar, req.body.password);
             const newFolder = new FolderImp(increaseFolderId(), '/');
-            newUser.rootFolderId = newFolder.id;
-            newFolder.creator = newUser;
-
+            newUser.rootFolder = newFolder;
             users.push(newUser);
-            folders.push(newFolder);
 
             const payload = { check: true, email: req.body.email };
             const token = jwt.sign(
@@ -58,7 +54,7 @@ export const authController = (app: Express, protectedRoutes: Router): void => {
 
     app.get(APP_CONSTANTS.ENDPOINTS.USER_INFO, protectedRoutes, (req: Request, res: Response) => {
         if (req.body.userInfo) {
-            res.json({ user: jsonConvert.serialize(req.body.userInfo) });
+            res.json({ user: req.body.userInfo });
         } else {
             res.status(404).json({ error: 'user_not_found' });
         }

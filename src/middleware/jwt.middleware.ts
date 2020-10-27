@@ -2,6 +2,9 @@ import express, { Express, Request, Response, Router } from 'express';
 import jwt, { VerifyErrors } from 'jsonwebtoken';
 import { APP_CONSTANTS } from '../config/app.config';
 import { users } from '../data/data';
+import { JsonConvert } from 'json2typescript';
+
+const jsonConvert: JsonConvert = new JsonConvert();
 
 export const getProtectedRoutes = (app: Express): Router => {
     const protectedRoutes = express.Router(); 
@@ -16,10 +19,10 @@ export const getProtectedRoutes = (app: Express): Router => {
                 } else {
                     const user = users.find(u => u.email === String(decoded?.email));
 
-                    if(!user) {
+                    if (!user) {
                         res.status(404).send({ error: 'user_not_found' });
                     } else {
-                        req.body.userInfo = user;
+                        req.body.userInfo = jsonConvert.serialize(user);
                         next();
                     }
                 }
