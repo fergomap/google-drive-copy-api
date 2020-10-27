@@ -14,9 +14,9 @@ const rootFolder = new FolderImp('1', '/', undefined, ['1', '2', '3', '4'], [], 
 const rootFolder2 = new FolderImp('5', '/');
 const rootFolder3 = new FolderImp('6', '/');
 
-const user = new UserImp('1', 'Fernando Gómez', 'fernando@gmail.com', 'https://image.shutterstock.com/image-photo/portrait-young-man-crossed-hands-260nw-582575041.jpg', '1234', rootFolder);
-const user2 = new UserImp('2', 'Antonio Pérez', 'antonio@gmail.com', 'https://previews.123rf.com/images/zoranphotographer/zoranphotographer1809/zoranphotographer180900043/109200504-handsome-young-guy-with-sunglasses-posing-and-enjoying-a-nice-sunny-day-urban-city-environment-old-r.jpg', '1234', rootFolder2);
-const user3 = new UserImp('3', 'María García', 'maria@gmail.com', 'https://c.stocksy.com/a/F0A900/z9/2183407.jpg', '1234', rootFolder3);
+const user = new UserImp('1', 'Fernando Gómez', 'fernando@gmail.com', 'https://image.shutterstock.com/image-photo/portrait-young-man-crossed-hands-260nw-582575041.jpg', rootFolder.id, '1234', rootFolder);
+const user2 = new UserImp('2', 'Antonio Pérez', 'antonio@gmail.com', 'https://previews.123rf.com/images/zoranphotographer/zoranphotographer1809/zoranphotographer180900043/109200504-handsome-young-guy-with-sunglasses-posing-and-enjoying-a-nice-sunny-day-urban-city-environment-old-r.jpg', rootFolder2.id, '1234', rootFolder2);
+const user3 = new UserImp('3', 'María García', 'maria@gmail.com', 'https://c.stocksy.com/a/F0A900/z9/2183407.jpg', rootFolder3.id, '1234', rootFolder3);
 
 const document = new DocumentImp('1', 'TXT Document');
 const document2 = new DocumentImp('2', 'IMG Document', FileTypeEnum.IMAGE);

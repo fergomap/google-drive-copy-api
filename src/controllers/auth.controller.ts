@@ -15,8 +15,8 @@ export const authController = (app: Express, protectedRoutes: Router): void => {
         if (user) {
             res.status(400).json({ error: 'user_already_registered' });
         } else {
-            const newUser = new UserImp(increaseUserId(), req.body.name, req.body.email, req.body.avatar, req.body.password);
             const newFolder = new FolderImp(increaseFolderId(), '/');
+            const newUser = new UserImp(increaseUserId(), req.body.name, req.body.email, req.body.avatar, newFolder.id, req.body.password);
             newUser.rootFolder = newFolder;
             users.push(newUser);
 

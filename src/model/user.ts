@@ -5,6 +5,7 @@ export default interface User {
     name: string;
     email: string;
     avatar: string;
+    rootFolderId: string;
     password: string;
     rootFolder: Folder;
 }
